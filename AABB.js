@@ -19,8 +19,10 @@
 
 		collidesWithAABB: function(aabb)
 		{
-			this.lower(x, y);
-			this.upper(x, y);
+			return !(upper.x < aabb.lower.x || 
+					lower.x > aabb.upper.x ||
+					upper.y < aabblower.y ||
+					lower.y > aabb.upper.y);
 		},
 	};
 
