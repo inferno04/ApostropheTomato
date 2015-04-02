@@ -19,11 +19,13 @@
 
 		collidesWithAABB: function(aabb)
 		{
-			return !(upper.x < aabb.lower.x || 
-					lower.x > aabb.upper.x ||
-					upper.y < aabblower.y ||
-					lower.y > aabb.upper.y);
-		},
+			return !(this.upper.x < aabb.lower.x || 
+					this.lower.x > aabb.upper.x ||
+					this.upper.y < aabb.lower.y ||
+					this.lower.y > aabb.upper.y);
+		}
 	};
+
+	window.AABB = AABB;
 
 })(window);

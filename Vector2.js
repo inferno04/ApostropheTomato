@@ -3,8 +3,8 @@
 
 	var Vector2 = function(x, y)
 	{
-		this.x = x;
-		this.y = y;
+		this.x = typeof x !== 'undefined' ? x : 0;
+		this.y = typeof y !== 'undefined' ? y : 0;
 	};
 
 	Vector2.UP = new Vector2(0, 1);
@@ -62,6 +62,6 @@
 		}
 	};
 
-	window.Vector2 = Vector2
+	window.Vector2 = Vector2;
 
 })(window);
