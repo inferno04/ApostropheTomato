@@ -11,6 +11,8 @@ var canvas;
 var context;
 var catSprite;
 
+var rotation = 0.0
+
 function main ()
 {
 	console.log ( "main" );
@@ -33,7 +35,8 @@ function draw ()
 	if ( running )
 	{
 		frame = window.requestAnimationFrame ( draw );
-		drawSprite ( context, catSprite, 0, 0, 80, 80 );
+		drawSprite ( context, catSprite, 0, 0, 80, 80, rotation );
+		rotation += 0.01;
 	}
 }
 

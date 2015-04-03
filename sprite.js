@@ -17,7 +17,7 @@ function loadSprite ( url )
 		img.onload = function ()
 		{
 			sprite.ready = true;
-			if ( !sprite.width ) sprite.width = img.width;
+			if ( !sprite.width )  sprite.width  = img.width;
 			if ( !sprite.height ) sprite.height = img.height;
 		};
 
@@ -26,7 +26,7 @@ function loadSprite ( url )
 	return sprite;
 };
 
-function drawSprite ( context, sprite, x, y, width, height )
+function drawSprite ( context, sprite, x, y, width, height, rot, rx, ry )
 {
 	if ( x == undefined ) return;
 	if ( y == undefined ) return;
@@ -35,17 +35,39 @@ function drawSprite ( context, sprite, x, y, width, height )
 
 	context.save ();
 	{
+
+		context.translate ( x, y );
+
 		var sx = ( sprite.x != undefined ) ? sprite.x      : 0;
 		var sy = ( sprite.y != undefined ) ? sprite.y      : 0;
 		var dw = ( width    == undefined ) ? sprite.width  : width;
 		var dh = ( height   == undefined ) ? sprite.height : height;
 
-		context.translate ( x, y );
+		if ( rotation != undefined ) {
+
+			if ( rx == undefined ) rx = ( dw / 2 );
+			if ( ry == undefined ) ry = ( dh / 2 );
+
+			context.translate ( rx, ry );
+			context.rotate ( rot );
+
+			rx = -rx;
+			ry = -ry;
+
+		} else {
+
+			rx = 0;
+			ry = 0;
+
+		}
+
 		context.drawImage (
 			sprite.img,
 			sx, sy, sprite.width, sprite.height,
-			0,  0,  dw,           dh
+			rx, ry, dw,           dh
 		);
+
 	}
 	context.restore ();
+
 };
